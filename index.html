@@ -3,149 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>梅田スタバ完全攻略ガイド | 34店舗データベース</title>
+    <title>梅田スタバ完全攻略ガイド | 世界一の密度を制する34店舗</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f8f9fa; }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #f4f7f5; }
         .sb-green { background-color: #00704A; }
+        .sb-dark { background-color: #1e3932; }
         .text-sb { color: #00704A; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
-        .badge-reserve { background-color: #000; color: #c4a163; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .badge-reserve { background-color: #000; color: #c4a163; border: 1px solid #c4a163; }
         .badge-tea { background-color: #ffb7c5; color: #d00050; }
-        .badge-new { background-color: #ff3d00; color: #fff; }
-        .sticky-search { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); }
+        .badge-new { background-color: #ff3d00; color: #fff; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+        .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body>
 
-<header class="sb-green text-white py-8 px-4">
+<header class="sb-dark text-white py-10 px-4 shadow-xl">
     <div class="container mx-auto text-center">
-        <h1 class="text-3xl font-bold tracking-tighter">☕ 梅田スタバ完全攻略ガイド</h1>
-        <p class="mt-2 text-sm opacity-90">2025年3月最新版・全34店舗データベース完全準拠</p>
+        <div class="inline-block bg-white text-[#00704A] px-3 py-1 rounded-full text-xs font-bold mb-4">Official Data 2025.3</div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">梅田スタバ完全攻略ガイド</h1>
+        <p class="text-sm md:text-base opacity-80 max-w-2xl mx-auto">世界屈指の店舗密度を誇る梅田・中之島・北新地エリア全34店舗を完全網羅。目的別に最適な1軒を見つけよう。</p>
     </div>
 </header>
 
-<div class="sticky-search border-b shadow-sm">
+<div class="sticky-nav border-b shadow-sm">
     <div class="container mx-auto px-4 py-4">
         <div class="flex flex-col gap-4">
-            <!-- キーワード検索 -->
-            <input type="text" id="searchInput" placeholder="店舗名、施設名、特徴で検索..." 
-                   class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600">
-            
-            <!-- エリアフィルター -->
-            <div class="flex flex-wrap gap-2 overflow-x-auto pb-1" id="areaFilter">
-                <button class="filter-btn active bg-green-700 text-white px-4 py-1 rounded-full text-xs" data-area="all">すべて</button>
-                <!-- JSでエリア生成 -->
+            <!-- 検索バー -->
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="店舗名、エリア、特徴（電源、穴場、テラス...）で検索" 
+                       class="w-full p-4 pl-12 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#00704A] transition shadow-inner">
+                <span class="absolute left-4 top-4 text-gray-400">🔍</span>
             </div>
-
-            <!-- 特徴フィルター -->
-            <div class="flex flex-wrap gap-2">
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="power">🔌電源あり</button>
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="tea">🌸Tea & Cafe</button>
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="reserve">⭐Reserve®</button>
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="book">📚書店併設</button>
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="night">🌙23時まで</button>
-                <button class="feature-btn border border-gray-300 px-3 py-1 rounded-full text-xs hover:bg-gray-100" data-feature="terrace">🌿テラス</button>
+            
+            <!-- エリア・属性フィルター -->
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button class="filter-btn active bg-[#00704A] text-white px-4 py-1.5 rounded-full text-xs font-medium" data-area="all">すべて</button>
+                <button class="filter-btn bg-white border px-4 py-1.5 rounded-full text-xs font-medium hover:bg-gray-50" data-area="梅田">梅田中心</button>
+                <button class="filter-btn bg-white border px-4 py-1.5 rounded-full text-xs font-medium hover:bg-gray-50" data-area="茶屋町">茶屋町</button>
+                <button class="filter-btn bg-white border px-4 py-1.5 rounded-full text-xs font-medium hover:bg-gray-50" data-area="西梅田">西梅田</button>
+                <button class="filter-btn bg-white border px-4 py-1.5 rounded-full text-xs font-medium hover:bg-gray-50" data-area="中之島">中之島・北新地</button>
+                <div class="w-full h-px bg-gray-100 md:hidden"></div>
+                <button class="feat-btn bg-white border border-blue-200 text-blue-700 px-4 py-1.5 rounded-full text-xs font-medium hover:bg-blue-50" data-feat="power">🔌電源あり</button>
+                <button class="feat-btn bg-white border border-pink-200 text-pink-700 px-4 py-1.5 rounded-full text-xs font-medium hover:bg-pink-50" data-feat="tea">🌸Tea & Cafe</button>
+                <button class="feat-btn bg-white border border-amber-200 text-amber-700 px-4 py-1.5 rounded-full text-xs font-medium hover:bg-amber-50" data-feat="reserve">⭐Reserve</button>
+                <button class="feat-btn bg-white border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-xs font-medium hover:bg-indigo-50" data-feat="night">🌙23時まで</button>
             </div>
         </div>
     </div>
 </div>
 
 <main class="container mx-auto px-4 py-8">
-    <div id="resultCount" class="text-sm text-gray-500 mb-4"></div>
-    <div id="storeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- 店舗カードがここに挿入されます -->
+    <div id="resultCount" class="text-sm font-medium text-gray-500 mb-6 ml-2"></div>
+    <div id="storeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 店舗カードが動的に挿入されます -->
     </div>
 </main>
 
-<footer class="bg-gray-900 text-white py-12 px-4 text-center mt-12">
-    <p class="text-lg font-bold mb-4">梅田スタバ完全攻略ガイド 2025</p>
-    <p class="text-sm opacity-60">当サイトは個人による研究プロジェクトです。<br>最新情報は必ずスターバックス コーヒー ジャパン公式サイトをご確認ください。</p>
+<footer class="bg-gray-900 text-white py-16 px-4 mt-20">
+    <div class="container mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">梅田スタバ密度世界一調査団</h2>
+        <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+            当サイトのデータは、2025年3月時点の公式情報を元に独自調査したものです。<br>
+            営業時間は変更される可能性があるため、来店前に公式サイトをご確認ください。
+        </p>
+        <div class="flex justify-center gap-6 text-sm">
+            <a href="https://store.starbucks.co.jp/" target="_blank" class="underline underline-offset-4 hover:text-green-400">Starbucks Japan Official</a>
+        </div>
+    </div>
 </footer>
 
 <script>
-// データベース（提供されたデータをJSON化）
 const stores = [
-    { id: "SBUX-001", name: "LUCUA osaka 地下2階店", url: "https://store.starbucks.co.jp/detail-1536/", facility: "LUCUA osaka", floor: "B2F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "11:00〜23:00", type: "Reserve Bar", tea: false, reserve: true, book: false, power: true, terrace: false, night: true, new: false, note: "関西唯一のReserve® Bar。サイフォン・ブラックイーグル対応。", scene: "特別なコーヒー体験・デート", map: "https://maps.google.com/?q=スターバックス+LUCUA+osaka+地下2階" },
-    { id: "SBUX-002", name: "LUCUA 2階店", url: "https://store.starbucks.co.jp/detail-4093/", facility: "LUCUA", floor: "2F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "07:00〜22:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "紅茶特化のTea & Cafe。TEAVANAの豊富なメニュー。", scene: "紅茶好き・ショッピング休憩", map: "https://maps.google.com/?q=スターバックス+LUCUA+2階" },
-    { id: "SBUX-003", name: "LUCUA 1100 2階 アトリウムガーデン店", url: "https://store.starbucks.co.jp/detail-1258/", facility: "LUCUA 1100", floor: "2F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: false, terrace: true, night: false, new: false, note: "トールサイズ限定店。開放的なアトリウムに隣接。", scene: "観光・写真撮影", map: "https://maps.google.com/?q=スターバックス+LUCUA+1100+アトリウムガーデン" },
-    { id: "SBUX-004", name: "LUCUA 1100 2階 グランマルシェ店", url: "https://store.starbucks.co.jp/detail-1257/", facility: "LUCUA 1100", floor: "2F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "10:30〜20:30", type: "通常", tea: false, reserve: false, book: false, power: false, terrace: false, night: false, new: false, note: "食物販ゾーン内。テイクアウトや買い物途中に便利。", scene: "テイクアウト・ちょい飲み", map: "https://maps.google.com/?q=スターバックス+LUCUA+1100+グランマルシェ" },
-    { id: "SBUX-005", name: "LUCUA 9階店", url: "https://store.starbucks.co.jp/detail-977/", facility: "LUCUA", floor: "9F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "10:30〜20:30", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "レストランフロア内。比較的空いていて穴場。", scene: "ランチ後の休憩", map: "https://maps.google.com/?q=スターバックス+LUCUA+9階" },
-    { id: "SBUX-006", name: "梅田 蔦屋書店", url: "https://store.starbucks.co.jp/detail-2069/", facility: "LUCUA 1100", floor: "9F", area: "梅田", sub: "LUCUA/JR大阪駅", hours: "08:30〜21:00", type: "通常", tea: false, reserve: false, book: true, power: true, terrace: false, night: false, new: false, note: "蔦屋書店併設。本を手に取りながら楽しめるブックカフェ。", scene: "仕事・勉強・読書・長居", map: "https://maps.google.com/?q=スターバックス+梅田蔦屋書店" },
-    { id: "SBUX-007", name: "JR大阪駅北店", url: "https://store.starbucks.co.jp/detail-2313/", facility: "JR大阪駅", floor: "北改札外", area: "梅田", sub: "JR大阪駅", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "北改札すぐ。通勤・待ち合わせに抜群の利便性。", scene: "朝活・通勤途中", map: "https://maps.google.com/?q=スターバックス+JR大阪駅北店" },
-    { id: "SBUX-008", name: "エキマルシェ大阪店", url: "https://store.starbucks.co.jp/detail-1405/", facility: "エキマルシェ大阪", floor: "B1F", area: "梅田", sub: "JR大阪駅", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "桜橋口直結。地下ショッピング街からのアクセス良好。", scene: "朝活・新幹線前の利用", map: "https://maps.google.com/?q=スターバックス+エキマルシェ大阪" },
-    { id: "SBUX-009", name: "ＫＩＴＴＥ大阪店", url: "https://store.starbucks.co.jp/detail-4324/", facility: "KITTE大阪", floor: "6F", area: "梅田", sub: "JR大阪駅・うめきた", hours: "09:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: true, night: false, new: true, note: "2024年7月開業。うめきた公園を見渡せる眺望。", scene: "デート・観光・SNS映え", map: "https://maps.google.com/?q=スターバックス+KITTE大阪" },
-    { id: "SBUX-010", name: "TSUTAYA BOOKSTORE イノゲート大阪店", url: "https://store.starbucks.co.jp/detail-2261/", facility: "イノゲート大阪", floor: "6F", area: "梅田", sub: "JR大阪駅・うめきた", hours: "08:00〜22:00", type: "通常", tea: false, reserve: false, book: true, power: true, terrace: true, night: false, new: true, note: "2024年開業。うめきた公園一望。電源席充実。", scene: "仕事・読書・眺望", map: "https://maps.google.com/?q=スターバックス+イノゲート大阪" },
-    { id: "SBUX-011", name: "グランフロント大阪 北館1階店", url: "https://store.starbucks.co.jp/detail-4155/", facility: "グランフロント大阪 北館", floor: "1F", area: "梅田", sub: "グランフロント大阪", hours: "07:00〜22:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, terrace: true, night: false, new: false, note: "北館1FのTea & Cafe。テラス席が人気。", scene: "紅茶・ショッピング・デート", map: "https://maps.google.com/?q=スターバックス+グランフロント大阪+北館" },
-    { id: "SBUX-012", name: "グランフロント大阪 南館6階店", url: "https://store.starbucks.co.jp/detail-1113/", facility: "グランフロント大阪 南館", floor: "6F", area: "梅田", sub: "グランフロント大阪", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "レストランフロア内。比較的空いていて落ち着ける穴場。", scene: "ショッピング休憩・仕事", map: "https://maps.google.com/?q=スターバックス+グランフロント大阪+南館6階" },
-    { id: "SBUX-013", name: "うめきたグリーンプレイス店", url: "https://store.starbucks.co.jp/detail-4434/", facility: "うめきたグリーンプレイス", floor: "2F", area: "梅田", sub: "うめきた・グラングリーン大阪", hours: "07:00〜22:30", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: true, night: false, new: true, note: "2025年3月21日開業。サステナブルな新感覚店舗。", scene: "散歩・観光・公園ビュー", map: "https://maps.google.com/?q=スターバックス+うめきたグリーンプレイス" },
-    { id: "SBUX-014", name: "LINKS UMEDA 地下1階店", url: "https://store.starbucks.co.jp/detail-1808/", facility: "LINKS UMEDA", floor: "B1F", area: "梅田", sub: "LINKS UMEDA", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: false, terrace: false, night: false, new: false, note: "トール限定・席数最小。テイクアウト特化型。", scene: "テイクアウト・ちょい飲み", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+地下1階" },
-    { id: "SBUX-015", name: "LINKS UMEDA 2階店", url: "https://store.starbucks.co.jp/detail-1809/", facility: "LINKS UMEDA", floor: "2F", area: "梅田", sub: "LINKS UMEDA", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "2Fデッキ直結。電源あり、作業向きのカウンター席あり。", scene: "仕事・ショッピング休憩", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+2階" },
-    { id: "SBUX-016", name: "LINKS UMEDA 8階店", url: "https://store.starbucks.co.jp/detail-1810/", facility: "LINKS UMEDA", floor: "8F", area: "梅田", sub: "LINKS UMEDA", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "LINKS内最大席数。電源充実の穴場。", scene: "仕事・長居・勉強", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+8階" },
-    { id: "SBUX-017", name: "阪急うめだ本店 9階店", url: "https://store.starbucks.co.jp/detail-4249/", facility: "阪急うめだ本店", floor: "9F", area: "梅田", sub: "阪急エリア", hours: "10:00〜20:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, terrace: true, night: false, new: false, note: "大階段横のTea & Cafe。百貨店の優雅な雰囲気。", scene: "紅茶・デート・百貨店休憩", map: "https://maps.google.com/?q=スターバックス+阪急うめだ本店9階" },
-    { id: "SBUX-018", name: "阪急サン広場地下通り店", url: "https://store.starbucks.co.jp/detail-1848/", facility: "阪急サン広場", floor: "B1F", area: "梅田", sub: "阪急エリア", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: true, new: false, note: "地下通路内。23時まで営業、梅田で最も遅い一軒。", scene: "待ち合わせ・通勤・深夜", map: "https://maps.google.com/?q=スターバックス+阪急サン広場地下通り" },
-    { id: "SBUX-019", name: "阪神梅田本店 9階店", url: "https://store.starbucks.co.jp/detail-1836/", facility: "阪神梅田本店", floor: "9F", area: "梅田", sub: "阪神エリア", hours: "10:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "フードホール内。梅田の街並みが見える窓席が人気。", scene: "眺望・ショッピング休憩", map: "https://maps.google.com/?q=スターバックス+阪神梅田本店9階" },
-    { id: "SBUX-020", name: "阪神梅田本店 地下2階店", url: "https://store.starbucks.co.jp/detail-1835/", facility: "阪神梅田本店", floor: "B2F", area: "梅田", sub: "阪神エリア", hours: "08:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: true, new: false, note: "バル横丁内。23時まで営業、夜カフェに重宝。", scene: "夜カフェ・仕事帰り", map: "https://maps.google.com/?q=スターバックス+阪神梅田本店地下2階" },
-    { id: "SBUX-021", name: "大丸梅田店", url: "https://store.starbucks.co.jp/detail-960/", facility: "大丸梅田店", floor: "2F", area: "梅田", sub: "JR大阪駅", hours: "10:00〜20:30", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "2F化粧品フロア。落ち着いた客層の百貨店店舗。", scene: "百貨店ショッピング休憩", map: "https://maps.google.com/?q=スターバックス+大丸梅田店" },
-    { id: "SBUX-022", name: "梅田HEP FIVE 3階店", url: "https://store.starbucks.co.jp/detail-4074/", facility: "HEP FIVE", floor: "3F", area: "梅田", sub: "阪急エリア", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "2021年開業。若者に人気のモール内店舗。", scene: "デート・若者向け", map: "https://maps.google.com/?q=スターバックス+梅田HEP+FIVE+3階" },
-    { id: "SBUX-023", name: "梅田HEP FIVE 7階店", url: "https://store.starbucks.co.jp/detail-28/", facility: "HEP FIVE", floor: "7F", area: "梅田", sub: "阪急エリア", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "観覧車フロア近く。エリアでも歴史ある老舗格。", scene: "観覧車前後・デート", map: "https://maps.google.com/?q=スターバックス+梅田HEP+FIVE+7階" },
-    { id: "SBUX-024", name: "ちゃやまちアプローズタワー店", url: "https://store.starbucks.co.jp/detail-181/", facility: "アプローズタワー", floor: "1F", area: "茶屋町", sub: "茶屋町エリア", hours: "06:30〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: true, night: false, new: false, note: "梅田最速6:30開店。ガラス張りで電源多数。", scene: "朝活・仕事・勉強・長居", map: "https://maps.google.com/?q=スターバックス+アプローズタワー+茶屋町" },
-    { id: "SBUX-025", name: "Nu茶屋町プラス店", url: "https://store.starbucks.co.jp/detail-1019/", facility: "NU茶屋町プラス", floor: "1F", area: "茶屋町", sub: "茶屋町エリア", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: true, new: false, note: "ロフト正面。23時まで営業、茶屋町の定番。", scene: "夜カフェ・待ち合わせ", map: "https://maps.google.com/?q=スターバックス+Nu茶屋町プラス" },
-    { id: "SBUX-026", name: "TSUTAYA 梅田 MeRISE店", url: "https://store.starbucks.co.jp/detail-2083/", facility: "KANDAI Me RISE", floor: "1F", area: "茶屋町", sub: "茶屋町エリア", hours: "10:00〜18:00(平日のみ)", type: "通常", tea: false, reserve: false, book: true, power: true, terrace: false, night: false, new: false, note: "関西大学キャンパス内。静かで仕事向き(平日のみ営業)。", scene: "仕事・勉強・静かに過ごす", map: "https://maps.google.com/?q=スターバックス+KANDAI+MeRISE+梅田" },
-    { id: "SBUX-027", name: "ホワイティうめだ店", url: "https://store.starbucks.co.jp/detail-4222/", facility: "ホワイティうめだ", floor: "地下", area: "梅田", sub: "地下街", hours: "08:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "噴水広場近く。地下街の中心で雨の日も安心。", scene: "待ち合わせ・通勤", map: "https://maps.google.com/?q=スターバックス+ホワイティうめだ" },
-    { id: "SBUX-028", name: "梅田エスト店", url: "https://store.starbucks.co.jp/detail-1762/", facility: "梅田EST", floor: "1F", area: "梅田", sub: "阪急エリア", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: true, new: false, note: "EST内。23時まで営業でアクセス良好。", scene: "通勤・待ち合わせ", map: "https://maps.google.com/?q=スターバックス+梅田エスト" },
-    { id: "SBUX-029", name: "梅田イーマ店", url: "https://store.starbucks.co.jp/detail-4019/", facility: "E-MA", floor: "B2F", area: "梅田", sub: "阪神エリア", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "B2Fの穴場。ペパーミントグリーンの落ち着いた内装。", scene: "仕事・勉強・穴場", map: "https://maps.google.com/?q=スターバックス+梅田イーマ" },
-    { id: "SBUX-030", name: "大阪ガーデンシティ店", url: "https://store.starbucks.co.jp/detail-129/", facility: "明治安田生命ビル", floor: "1F", area: "梅田", sub: "西梅田エリア", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: true, night: false, new: false, note: "2層吹き抜けの緑豊かな空間。西梅田の隠れ家。", scene: "仕事・デート・読書", map: "https://maps.google.com/?q=スターバックス+大阪ガーデンシティ" },
-    { id: "SBUX-031", name: "中之島三井ビル店", url: "https://store.starbucks.co.jp/detail-382/", facility: "中之島三井ビル", floor: "1F", area: "中之島", sub: "中之島エリア", hours: "07:30〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: true, night: false, new: false, note: "オフィス街の老舗。土日祝休業、ビジネス特化。", scene: "ミーティング・仕事", map: "https://maps.google.com/?q=スターバックス+中之島三井ビル" },
-    { id: "SBUX-032", name: "桜橋プラザビル店", url: "https://store.starbucks.co.jp/detail-388/", facility: "桜橋プラザビル", floor: "1F", area: "北新地", sub: "北新地エリア", hours: "07:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: false, note: "北新地駅すぐ。土日祝休業、ビジネス客中心。", scene: "仕事・通勤・ミーティング", map: "https://maps.google.com/?q=スターバックス+桜橋プラザビル" },
-    { id: "SBUX-033", name: "淀屋橋odona店", url: "https://store.starbucks.co.jp/detail-828/", facility: "淀屋橋odona", floor: "B1F", area: "中之島", sub: "淀屋橋エリア", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: true, new: false, note: "淀屋橋駅直結。平日23時まで営業、電源充実。", scene: "通勤・仕事・夜カフェ", map: "https://maps.google.com/?q=スターバックス+淀屋橋odona" },
-    { id: "SBUX-034", name: "北浜店", url: "https://store.starbucks.co.jp/detail-4437/", facility: "北浜エリア", floor: "1F", area: "中之島", sub: "北浜エリア", hours: "07:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, terrace: false, night: false, new: true, note: "2024年開業。中之島対岸の最新店舗。", scene: "仕事・散策", map: "https://maps.google.com/?q=スターバックス+北浜+大阪" }
+    { id: "1536", name: "LUCUA osaka 地下2階店", facility: "LUCUA osaka", floor: "B2F", area: "梅田", hours: "11:00〜23:00", type: "Reserve Bar", tea: false, reserve: true, book: false, power: true, power_desc: "テーブル席に一部あり", terrace: false, seats: "60", night: true, new: false, tall: false, note: "関西唯一のReserve® Bar。希少コーヒー体験が可能。", scene: "特別なコーヒー体験・デート・夜カフェ", map: "https://maps.google.com/?q=スターバックス+LUCUA+osaka+地下2階" },
+    { id: "4093", name: "LUCUA 2階店", facility: "LUCUA", floor: "2F", area: "梅田", hours: "07:00〜22:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, power_desc: "テーブル席中心にあり", terrace: false, seats: "50", night: false, new: false, tall: false, note: "紅茶特化。TEAVANAの豊富な茶葉メニュー。", scene: "紅茶好き・ショッピング休憩・朝活", map: "https://maps.google.com/?q=スターバックス+LUCUA+2階" },
+    { id: "1258", name: "LUCUA 1100 2階 アトリウムガーデン店", facility: "LUCUA 1100", floor: "2F", area: "梅田", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: false, power_desc: "なし", terrace: true, seats: "20", night: false, new: false, tall: true, note: "トール限定店。開放的な空中アトリウム隣接。", scene: "観光・写真撮影・テラス休憩", map: "https://maps.google.com/?q=スターバックス+LUCUA+1100+アトリウムガーデン" },
+    { id: "1257", name: "LUCUA 1100 2階 グランマルシェ店", facility: "LUCUA 1100", floor: "2F", area: "梅田", hours: "10:30〜20:30", type: "通常", tea: false, reserve: false, book: false, power: false, power_desc: "なし", terrace: false, seats: "30", night: false, new: false, tall: false, note: "食物販ゾーン内。買い物の合間に立ち寄りやすい。", scene: "テイクアウト・ちょい飲み", map: "https://maps.google.com/?q=スターバックス+LUCUA+1100+グランマルシェ" },
+    { id: "977", name: "LUCUA 9階店", facility: "LUCUA", floor: "9F", area: "梅田", hours: "10:30〜20:30", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "40", night: false, new: false, tall: false, note: "レストランフロア内。比較的空いていて落ち着ける穴場。", scene: "ランチ後の休憩・穴場利用", map: "https://maps.google.com/?q=スターバックス+LUCUA+9階" },
+    { id: "2069", name: "梅田 蔦屋書店", facility: "LUCUA 1100", floor: "9F", area: "梅田", hours: "08:30〜21:00", type: "書店併設", tea: false, reserve: false, book: true, power: true, power_desc: "テーブル席中心に多数あり", terrace: false, seats: "80", night: false, new: false, tall: false, note: "本を読みながら利用可。仕事・勉強に最適。", scene: "仕事・勉強・読書・長居", map: "https://maps.google.com/?q=スターバックス+梅田蔦屋書店" },
+    { id: "2313", name: "JR大阪駅北店", facility: "JR大阪駅", floor: "北改札外", area: "梅田", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "40", night: false, new: false, tall: false, note: "北改札すぐ。通勤・通学客に抜群の利便性。", scene: "朝活・通勤途中・待ち合わせ", map: "https://maps.google.com/?q=スターバックス+JR大阪駅北店" },
+    { id: "1405", name: "エキマルシェ大阪店", facility: "エキマルシェ大阪", floor: "B1F", area: "梅田", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "35", night: false, new: false, tall: false, note: "桜橋口直結。朝7時から営業。", scene: "新幹線前・朝活・通勤", map: "https://maps.google.com/?q=スターバックス+エキマルシェ大阪" },
+    { id: "4324", name: "ＫＩＴＴＥ大阪店", facility: "KITTE大阪", floor: "6F", area: "梅田", hours: "09:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "テーブル席にあり", terrace: true, seats: "50", night: false, new: true, tall: false, note: "2024.7開業。うめきた公園を見渡せる眺望。", scene: "デート・観光・最新スポット", map: "https://maps.google.com/?q=スターバックス+KITTE大阪" },
+    { id: "2261", name: "TSUTAYA BOOKSTORE イノゲート大阪店", facility: "イノゲート大阪", floor: "6F", area: "梅田", hours: "08:00〜22:00", type: "書店併設", tea: false, reserve: false, book: true, power: true, power_desc: "テーブル席に多数あり", terrace: true, seats: "70", night: false, new: true, tall: false, note: "2024.7開業。眺望抜群のテラスと電源席が充実。", scene: "仕事・読書・眺望・ノマド", map: "https://maps.google.com/?q=スターバックス+イノゲート大阪" },
+    { id: "4155", name: "グランフロント大阪 北館1階店", facility: "グランフロント大阪 北館", floor: "1F", area: "梅田", hours: "07:00〜22:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, power_desc: "あり", terrace: true, seats: "60", night: false, new: false, tall: false, note: "Tea & Cafe店。テラス席からうめきたを望む。", scene: "紅茶・ショッピング休憩・デート", map: "https://maps.google.com/?q=スターバックス+グランフロント大阪+北館" },
+    { id: "1113", name: "グランフロント大阪 南館6階店", facility: "グランフロント大阪 南館", floor: "6F", area: "梅田", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "50", night: false, new: false, tall: false, note: "比較的空いていて仕事や休憩に使いやすい穴場。", scene: "仕事・落ち着いた休憩", map: "https://maps.google.com/?q=スターバックス+グランフロント大阪+南館6階" },
+    { id: "4434", name: "うめきたグリーンプレイス店", facility: "うめきたグリーンプレイス", floor: "2F", area: "梅田", hours: "07:00〜22:30", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "多数あり", terrace: true, seats: "80", night: false, new: true, tall: false, note: "2025.3開業。公園隣接・サステナブルコンセプト店。", scene: "観光・散歩・公園ビュー・仕事", map: "https://maps.google.com/?q=スターバックス+うめきたグリーンプレイス" },
+    { id: "1808", name: "LINKS UMEDA 地下1階店", facility: "LINKS UMEDA", floor: "B1F", area: "梅田", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: false, power_desc: "なし", terrace: false, seats: "15", night: false, new: false, tall: true, note: "トール限定。テイクアウト主体の爆速店舗。", scene: "テイクアウト・ちょい飲み", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+地下1階" },
+    { id: "1809", name: "LINKS UMEDA 2階店", facility: "LINKS UMEDA", floor: "2F", area: "梅田", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "カウンター席にあり", terrace: false, seats: "50", night: false, new: false, tall: false, note: "2Fデッキ直結。仕事・ショッピング休憩に便利。", scene: "仕事・待ち合わせ・休憩", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+2階" },
+    { id: "1810", name: "LINKS UMEDA 8階店", facility: "LINKS UMEDA", floor: "8F", area: "梅田", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "多数あり", terrace: false, seats: "80", night: false, new: false, tall: false, note: "3店舗中最多席数。電源充実で梅田屈指の穴場。", scene: "仕事・勉強・長居・穴場", map: "https://maps.google.com/?q=スターバックス+LINKS+UMEDA+8階" },
+    { id: "4249", name: "阪急うめだ本店 9階店", facility: "阪急うめだ本店", floor: "9F", area: "梅田", hours: "10:00〜20:00", type: "Tea & Cafe", tea: true, reserve: false, book: false, power: true, power_desc: "あり", terrace: true, seats: "70", night: false, new: false, tall: false, note: "Tea & Cafe店。百貨店の優雅な雰囲気とテラス。", scene: "紅茶好き・百貨店休憩・デート", map: "https://maps.google.com/?q=スターバックス+阪急うめだ本店9階" },
+    { id: "1848", name: "阪急サン広場地下通り店", facility: "阪急サン広場", floor: "B1F", area: "梅田", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "45", night: true, new: false, tall: false, note: "23時まで営業。深夜・早朝の強い味方。", scene: "終電前・通勤・待ち合わせ", map: "https://maps.google.com/?q=スターバックス+阪急サン広場地下通り" },
+    { id: "1836", name: "阪神梅田本店 9階店", facility: "阪神梅田本店", floor: "9F", area: "梅田", hours: "10:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "窓際テーブル席にあり", terrace: false, seats: "60", night: false, new: false, tall: false, note: "フードホール内。窓席から梅田を眺められる。", scene: "眺望・食事前後・ショッピング", map: "https://maps.google.com/?q=スターバックス+阪神梅田本店9階" },
+    { id: "1835", name: "阪神梅田本店 地下2階店", facility: "阪神梅田本店", floor: "B2F", area: "梅田", hours: "08:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "40", night: true, new: false, tall: false, note: "バル横丁内。夜23時まで。食後コーヒーに◎。", scene: "夜カフェ・仕事帰り・ちょい飲み", map: "https://maps.google.com/?q=スターバックス+阪神梅田本店地下2階" },
+    { id: "960", name: "大丸梅田店", facility: "大丸梅田店", floor: "2F", area: "梅田", hours: "10:00〜20:30", type: "通常", tea: false, reserve: false, book: false, power: false, power_desc: "なし", terrace: false, seats: "40", night: false, new: false, tall: false, note: "百貨店ショッピング休憩に最適。落ち着いた客層。", scene: "百貨店休憩・待ち合わせ", map: "https://maps.google.com/?q=スターバックス+大丸梅田店" },
+    { id: "4074", name: "梅田HEP FIVE 3階店", facility: "HEP FIVE", floor: "3F", area: "梅田", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "50", night: false, new: false, tall: false, note: "若者に人気のHEP内。新しめの店舗。", scene: "デート・ショッピング・若者", map: "https://maps.google.com/?q=スターバックス+梅田HEP+FIVE+3階" },
+    { id: "28", name: "梅田HEP FIVE 7階店", facility: "HEP FIVE", floor: "7F", area: "梅田", hours: "11:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "60", night: false, new: false, tall: false, note: "観覧車近く。梅田の老舗。待ち合わせ定番。", scene: "デート・観覧車前後・観光", map: "https://maps.google.com/?q=スターバックス+梅田HEP+FIVE+7階" },
+    { id: "181", name: "ちゃやまちアプローズタワー店", facility: "アプローズタワー", floor: "1F", area: "茶屋町", hours: "06:30〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "梅田エリア最充実級", terrace: true, seats: "80", night: false, new: false, tall: false, note: "梅田最速6:30開店。開放感・電源最強。", scene: "朝活・仕事・勉強・長居・電源", map: "https://maps.google.com/?q=スターバックス+アプローズタワー+茶屋町" },
+    { id: "1019", name: "NU茶屋町プラス店", facility: "NU茶屋町プラス", floor: "1F", area: "茶屋町", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "60", night: true, new: false, tall: false, note: "ロフト正面。23時まで営業。夜カフェの定番。", scene: "夜カフェ・待ち合わせ・仕事", map: "https://maps.google.com/?q=スターバックス+Nu茶屋町プラス" },
+    { id: "2083", name: "TSUTAYA 梅田 MeRISE店", facility: "KANDAI Me RISE", floor: "1F", area: "茶屋町", hours: "10:00〜18:00(平日のみ)", type: "書店併設", tea: false, reserve: false, book: true, power: true, power_desc: "多数あり", terrace: false, seats: "40", night: false, new: false, tall: false, note: "関西大学キャンパス内。静かで最高に集中できる。", scene: "仕事・勉強・静かに・平日昼間", map: "https://maps.google.com/?q=スターバックス+KANDAI+MeRISE+梅田" },
+    { id: "4222", name: "ホワイティうめだ店", facility: "ホワイティうめだ", floor: "地下", area: "梅田", hours: "08:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "45", night: false, new: false, tall: false, note: "地下街の中心。雨の日も濡れずに待ち合わせ。", scene: "待ち合わせ・通勤・雨の日", map: "https://maps.google.com/?q=スターバックス+ホワイティうめだ" },
+    { id: "1762", name: "梅田エスト店", facility: "梅田EST", floor: "1F", area: "梅田", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "一部あり", terrace: false, seats: "50", night: true, new: false, tall: false, note: "23時まで。駅近でショッピング帰りに便利。", scene: "通勤・待ち合わせ・ショッピング", map: "https://maps.google.com/?q=スターバックス+梅田エスト" },
+    { id: "4019", name: "梅田イーマ店", facility: "E-MA", floor: "B2F", area: "梅田", hours: "10:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "40", night: false, new: false, tall: false, note: "B2Fの穴場。ペパーミントグリーンの落ち着いた内装。", scene: "静かに仕事・勉強・デート", map: "https://maps.google.com/?q=スターバックス+梅田イーマ" },
+    { id: "129", name: "大阪ガーデンシティ店", facility: "明治安田生命ビル", floor: "1F", area: "西梅田", hours: "07:00〜22:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "多数・豊富", terrace: true, seats: "60", night: false, new: false, tall: false, note: "水と緑の隠れ家。西梅田で最も落ち着ける電源店。", scene: "仕事・デート・癒し・ノマド", map: "https://maps.google.com/?q=スターバックス+大阪ガーデンシティ" },
+    { id: "382", name: "中之島三井ビル店", facility: "中之島三井ビル", floor: "1F", area: "中之島", hours: "07:30〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: true, seats: "50", night: false, new: false, tall: false, note: "ビジネス街の老舗。土日祝休業なので平日は快適。", scene: "ビジネス・ミーティング・仕事", map: "https://maps.google.com/?q=スターバックス+中之島三井ビル" },
+    { id: "388", name: "桜橋プラザビル店", facility: "桜橋プラザビル", floor: "1F", area: "中之島", hours: "07:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "50", night: false, new: false, tall: false, note: "北新地駅すぐ。土日祝休業のビジネス特化型店。", scene: "ビジネス・北新地・仕事", map: "https://maps.google.com/?q=スターバックス+桜橋プラザビル+大阪" },
+    { id: "828", name: "淀屋橋odona店", facility: "淀屋橋odona", floor: "B1F", area: "中之島", hours: "07:00〜23:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "多数あり", terrace: false, seats: "60", night: true, new: false, tall: false, note: "駅直結。平日23時まで営業。電源・Wi-Fi完備。", scene: "仕事・夜カフェ・通勤・淀屋橋", map: "https://maps.google.com/?q=スターバックス+淀屋橋odona" },
+    { id: "4437", name: "北浜店", facility: "北浜エリア", floor: "1F", area: "中之島", hours: "07:00〜21:00", type: "通常", tea: false, reserve: false, book: false, power: true, power_desc: "あり", terrace: false, seats: "45", night: false, new: true, tall: false, note: "2024開業。中之島対岸の最新店舗。散策ついでに。", scene: "仕事・通勤・北浜散策", map: "https://maps.google.com/?q=スターバックス+北浜+大阪" }
 ];
 
 const grid = document.getElementById('storeGrid');
 const searchInput = document.getElementById('searchInput');
-const areaFilterContainer = document.getElementById('areaFilter');
 const resultCount = document.getElementById('resultCount');
-
 let currentArea = 'all';
-let activeFeatures = [];
+let currentFeat = null;
 
-// サブエリアを抽出してフィルター作成
-const areas = ['all', ...new Set(stores.map(s => s.sub))];
-areas.forEach(area => {
-    if (area === 'all') return;
-    const btn = document.createElement('button');
-    btn.className = "filter-btn border border-gray-300 px-4 py-1 rounded-full text-xs hover:bg-gray-100 whitespace-nowrap";
-    btn.textContent = area;
-    btn.dataset.area = area;
+// エリアフィルター
+document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.onclick = () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-green-700', 'text-white'));
-        btn.classList.add('bg-green-700', 'text-white');
-        currentArea = area;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-[#00704A]', 'text-white'));
+        btn.classList.add('bg-[#00704A]', 'text-white');
+        currentArea = btn.dataset.area;
         render();
     };
-    areaFilterContainer.appendChild(btn);
 });
 
-// 初期ボタンの設定
-document.querySelector('[data-area="all"]').onclick = (e) => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-green-700', 'text-white'));
-    e.target.classList.add('bg-green-700', 'text-white');
-    currentArea = 'all';
-    render();
-};
-
-// 特徴フィルターのトグル
-document.querySelectorAll('.feature-btn').forEach(btn => {
+// 特徴フィルター
+document.querySelectorAll('.feat-btn').forEach(btn => {
     btn.onclick = () => {
-        const feat = btn.dataset.feature;
-        if (activeFeatures.includes(feat)) {
-            activeFeatures = activeFeatures.filter(f => f !== feat);
-            btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+        if (currentFeat === btn.dataset.feat) {
+            btn.classList.remove('bg-[#00704A]', 'text-white');
+            currentFeat = null;
         } else {
-            activeFeatures.push(feat);
-            btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+            document.querySelectorAll('.feat-btn').forEach(b => b.classList.remove('bg-[#00704A]', 'text-white'));
+            btn.classList.add('bg-[#00704A]', 'text-white');
+            currentFeat = btn.dataset.feat;
         }
         render();
     };
@@ -153,73 +147,77 @@ document.querySelectorAll('.feature-btn').forEach(btn => {
 
 function render() {
     const keyword = searchInput.value.toLowerCase();
-    
     const filtered = stores.filter(s => {
-        const matchKeyword = s.name.toLowerCase().includes(keyword) || s.facility.toLowerCase().includes(keyword) || s.note.toLowerCase().includes(keyword);
-        const matchArea = currentArea === 'all' || s.sub === currentArea;
-        
-        const matchFeatures = activeFeatures.every(f => {
-            if (f === 'power') return s.power;
-            if (f === 'tea') return s.tea;
-            if (f === 'reserve') return s.reserve;
-            if (f === 'book') return s.book;
-            if (f === 'night') return s.night;
-            if (f === 'terrace') return s.terrace;
-            return true;
-        });
-
-        return matchKeyword && matchArea && matchFeatures;
+        const matchK = s.name.toLowerCase().includes(keyword) || s.facility.toLowerCase().includes(keyword) || s.note.toLowerCase().includes(keyword) || s.scene.toLowerCase().includes(keyword);
+        const matchA = currentArea === 'all' || s.area === currentArea;
+        let matchF = true;
+        if (currentFeat === 'power') matchF = s.power;
+        if (currentFeat === 'tea') matchF = s.tea;
+        if (currentFeat === 'reserve') matchF = s.reserve;
+        if (currentFeat === 'night') matchF = s.night;
+        return matchK && matchA && matchF;
     });
 
-    resultCount.textContent = `${filtered.length} 件の店舗が見つかりました`;
+    resultCount.innerHTML = `全 34 店舗中 <span class="text-sb text-lg mx-1">${filtered.length}</span> 店舗を表示中`;
 
     grid.innerHTML = filtered.map(s => `
-        <div class="bg-white rounded-xl shadow-sm border overflow-hidden card flex flex-col">
-            <div class="p-5 flex-grow">
-                <div class="flex justify-between items-start mb-2">
-                    <div class="flex flex-wrap gap-1">
-                        ${s.reserve ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded badge-reserve">RESERVE</span>' : ''}
-                        ${s.tea ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded badge-tea">TEA & CAFE</span>' : ''}
-                        ${s.new ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded badge-new">NEW</span>' : ''}
+        <article class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden card flex flex-col">
+            <div class="p-6 flex-grow">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex flex-wrap gap-2">
+                        ${s.reserve ? '<span class="text-[10px] font-bold px-2 py-1 rounded-full badge-reserve uppercase tracking-widest">Reserve®</span>' : ''}
+                        ${s.tea ? '<span class="text-[10px] font-bold px-2 py-1 rounded-full badge-tea uppercase tracking-widest">Tea & Cafe</span>' : ''}
+                        ${s.new ? '<span class="text-[10px] font-bold px-2 py-1 rounded-full badge-new uppercase tracking-widest">New 2024-25</span>' : ''}
+                        ${s.book ? '<span class="text-[10px] font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200 uppercase tracking-widest">Book & Cafe</span>' : ''}
                     </div>
-                    <span class="text-[10px] text-gray-400 font-mono">${s.id}</span>
+                    <span class="text-[10px] text-gray-300 font-mono tracking-tighter">#${s.id}</span>
                 </div>
-                <h2 class="text-lg font-bold mb-1 leading-tight">${s.name}</h2>
-                <p class="text-xs text-sb font-bold mb-3">${s.facility} ${s.floor}</p>
                 
-                <div class="space-y-2 mb-4">
-                    <div class="flex items-center text-xs text-gray-600">
-                        <span class="w-16 font-bold text-gray-400">営業時間</span>
-                        <span>${s.hours}</span>
+                <h3 class="text-xl font-bold mb-1 text-gray-800 leading-tight">${s.name}</h3>
+                <div class="flex items-center text-xs font-bold text-sb mb-4">
+                    <span class="bg-green-50 px-2 py-0.5 rounded mr-2">${s.facility}</span>
+                    <span>${s.floor}</span>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="w-16 flex-shrink-0 font-medium">🕒 営業</span>
+                        <span class="text-gray-700">${s.hours}</span>
                     </div>
-                    <div class="flex items-start text-xs text-gray-600">
-                        <span class="w-16 font-bold text-gray-400">シーン</span>
-                        <span class="flex-1">${s.scene}</span>
+                    <div class="flex items-center text-xs text-gray-500">
+                        <span class="w-16 flex-shrink-0 font-medium">🪑 席数</span>
+                        <span class="text-gray-700">約 ${s.seats} 席</span>
+                    </div>
+                    <div class="flex items-start text-xs text-gray-500">
+                        <span class="w-16 flex-shrink-0 font-medium">✨ 推薦</span>
+                        <span class="text-gray-700 leading-relaxed">${s.scene}</span>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-3 rounded-lg text-xs text-gray-700 leading-relaxed mb-4">
-                    ${s.note}
+                <div class="bg-green-50/50 p-4 rounded-2xl text-xs text-gray-600 leading-relaxed mb-6 border border-green-100/50 italic">
+                    "${s.note}"
                 </div>
 
-                <div class="flex flex-wrap gap-2 mb-2">
-                    ${s.power ? '<span class="text-[10px] bg-green-50 text-green-700 px-2 py-1 rounded">🔌 電源あり</span>' : ''}
-                    ${s.terrace ? '<span class="text-[10px] bg-orange-50 text-orange-700 px-2 py-1 rounded">🌿 テラス</span>' : ''}
-                    ${s.book ? '<span class="text-[10px] bg-blue-50 text-blue-700 px-2 py-1 rounded">📚 本が読める</span>' : ''}
+                <div class="flex flex-wrap gap-2">
+                    ${s.power ? `<span class="text-[10px] bg-white border border-green-200 text-green-700 px-3 py-1 rounded-full font-bold">🔌 電源：${s.power_desc}</span>` : '<span class="text-[10px] bg-gray-50 text-gray-400 px-3 py-1 rounded-full border border-gray-100 italic">🔌 電源なし</span>'}
+                    ${s.terrace ? '<span class="text-[10px] bg-orange-50 text-orange-700 px-3 py-1 rounded-full border border-orange-100 font-bold">🌿 テラス席あり</span>' : ''}
+                    ${s.tall ? '<span class="text-[10px] bg-red-50 text-red-600 px-3 py-1 rounded-full border border-red-100 font-bold">⚠️ トール限定</span>' : ''}
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 border-t text-center text-sm font-bold">
-                <a href="${s.url}" target="_blank" class="py-3 text-gray-600 border-r hover:bg-gray-50 transition">公式サイト</a>
-                <a href="${s.map}" target="_blank" class="py-3 text-blue-600 hover:bg-blue-50 transition">Google Map</a>
+            <div class="grid grid-cols-2 border-t border-gray-50">
+                <a href="https://store.starbucks.co.jp/detail-${s.id}/" target="_blank" 
+                   class="py-4 text-xs font-bold text-gray-500 text-center border-r border-gray-50 hover:bg-gray-50 transition uppercase tracking-widest">Detail</a>
+                <a href="${s.map}" target="_blank" 
+                   class="py-4 text-xs font-bold text-blue-600 text-center hover:bg-blue-50 transition uppercase tracking-widest">Google Maps</a>
             </div>
-        </div>
+        </article>
     `).join('');
 }
 
 searchInput.oninput = render;
 render();
-
 </script>
+
 </body>
 </html>
